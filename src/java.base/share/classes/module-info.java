@@ -151,7 +151,6 @@ module java.base {
         java.management,
         java.naming,
         java.rmi,
-        jdk.crypto.ec,
         jdk.jartool,
         jdk.jlink,
         jdk.net,
