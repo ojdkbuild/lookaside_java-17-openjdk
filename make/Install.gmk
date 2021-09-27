@@ -41,3 +41,14 @@ install:
 	$(MKDIR) -p $(INSTALL_PREFIX)/bin
 	$(RM) $(addprefix $(INSTALL_PREFIX)/bin/, $(BINARIES))
 	$(foreach b, $(BINARIES), $(LN) -s $(INSTALL_PREFIX)/jvm/$(INSTALLDIR)/bin/$b $(INSTALL_PREFIX)/bin/$b &&) true
+
+# Create MSI installer from jdk image
+msi-installer:
+	echo Creating MSI installer in $(MSI_IMAGE_DIR)
+	$(RM) -r $(MSI_IMAGE_DIR)
+	$(MKDIR) -p $(MSI_IMAGE_DIR)
+	$(CP) -rp $(TOPDIR)/make/data/msi-installer/* $(MSI_IMAGE_DIR)/
+	cd $(MSI_IMAGE_DIR) && $(MSI_WIX_CANDLE) -nologo -arch x64 jdk.xml
+	cd $(MSI_IMAGE_DIR) && $(MSI_WIX_LIGHT) -nologo -sw1076 -ext WixUIExtension -ext WixUtilExtension jdk.wixobj
+
+.PHONY: default msi-installer
