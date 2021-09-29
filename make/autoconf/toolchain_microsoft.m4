@@ -712,3 +712,51 @@ AC_DEFUN([TOOLCHAIN_SETUP_VISUAL_STUDIO_SYSROOT_FLAGS],
   AC_SUBST($1SYSROOT_CFLAGS)
   AC_SUBST($1SYSROOT_LDFLAGS)
 ])
+
+#
+# Setup and check the WiX MSI installer toolset
+#
+AC_DEFUN([TOOLCHAIN_SETUP_MSI_WIX],
+[
+  AC_ARG_WITH(wix, [AS_HELP_STRING([--with-wix],
+      [path to WiX MSI installer toolset directory (Windows only) @<:@probed@:>@])])
+
+  AC_MSG_CHECKING([for WiX toolset])
+  if test "x$with_wix" = x; then
+    # Probing WIX environment variable set by WiX installer
+    if test -d "$WIX"; then
+      MSI_WIX_HOME="$WIX"
+      UTIL_FIXUP_PATH([MSI_WIX_HOME])
+      AC_MSG_RESULT([yes, $MSI_WIX_HOME])
+    else
+      AC_MSG_RESULT([no, not found])
+    fi
+  else
+    # Path specified
+    MSI_WIX_HOME="$with_wix"
+    if test ! -d "$MSI_WIX_HOME"; then
+      AC_MSG_RESULT([no, error])
+      AC_MSG_ERROR([$MSI_WIX_HOME does not exist or is not a directory])
+    fi
+    UTIL_FIXUP_PATH([MSI_WIX_HOME])
+    AC_MSG_RESULT([yes, $MSI_WIX_HOME])
+  fi
+
+  if test ! -z "$MSI_WIX_HOME"; then
+    # Path found
+    MSI_WIX_CANDLE=$MSI_WIX_HOME/bin/candle.exe
+    if test ! -f "$MSI_WIX_CANDLE"; then
+      AC_MSG_RESULT([no, error])
+      AC_MSG_ERROR([$MSI_WIX_CANDLE utility does not exist or is not a file])
+    fi
+
+    MSI_WIX_LIGHT=$MSI_WIX_HOME/bin/light.exe
+    if test ! -f "$MSI_WIX_LIGHT"; then
+      AC_MSG_RESULT([no, error])
+      AC_MSG_ERROR([$MSI_WIX_LIGHT utility does not exist or is not a file])
+    fi
+  fi
+
+  AC_SUBST(MSI_WIX_CANDLE)
+  AC_SUBST(MSI_WIX_LIGHT)
+])
