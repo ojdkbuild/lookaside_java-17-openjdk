@@ -27,5 +27,4 @@ package jdk.internal.access;
 
 public interface JavaSecuritySystemConfiguratorAccess {
     boolean isSystemFipsEnabled();
-    boolean isPlainKeySupportEnabled();
 }
