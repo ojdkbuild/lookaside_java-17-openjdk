@@ -50,6 +50,10 @@
                                 <File Id="file_bin_api_ms_win_core_console_l1_1_0_dll"
                                       Source="../jdk/bin/api-ms-win-core-console-l1-1-0.dll"/>
                             </Component>
+                            <Component Id="comp_bin_api_ms_win_core_console_l1_2_0_dll" Guid="*">
+                                <File Id="file_bin_api_ms_win_core_console_l1_2_0_dll"
+                                      Source="../jdk/bin/api-ms-win-core-console-l1-2-0.dll"/>
+                            </Component>
                             <Component Id="comp_bin_api_ms_win_core_datetime_l1_1_0_dll" Guid="*">
                                 <File Id="file_bin_api_ms_win_core_datetime_l1_1_0_dll"
                                       Source="../jdk/bin/api-ms-win-core-datetime-l1-1-0.dll"/>
@@ -353,6 +357,9 @@
                             <Component Id="comp_bin_jstatd_exe" Guid="*">
                                 <File Id="file_bin_jstatd_exe" Source="../jdk/bin/jstatd.exe"/>
                             </Component>
+                            <Component Id="comp_bin_jsvml_dll" Guid="*">
+                                <File Id="file_bin_jsvml_dll" Source="../jdk/bin/jsvml.dll"/>
+                            </Component>
                             <Component Id="comp_bin_keytool_exe" Guid="*">
                                 <File Id="file_bin_keytool_exe" Source="../jdk/bin/keytool.exe"/>
                             </Component>
@@ -427,9 +434,6 @@
                             </Component>
                             <Component Id="comp_bin_sunmscapi_dll" Guid="*">
                                 <File Id="file_bin_sunmscapi_dll" Source="../jdk/bin/sunmscapi.dll"/>
-                            </Component>
-                            <Component Id="comp_bin_svml_dll" Guid="*">
-                                <File Id="file_bin_svml_dll" Source="../jdk/bin/svml.dll"/>
                             </Component>
                             <Component Id="comp_bin_ucrtbase_dll" Guid="*">
                                 <File Id="file_bin_ucrtbase_dll" Source="../jdk/bin/ucrtbase.dll"/>
@@ -2715,6 +2719,7 @@
         <Feature Id="jdk" Absent="disallow" AllowAdvertise="no" ConfigurableDirectory="INSTALLDIR"
                  Description="OpenJDK runtime files." Level="1" Title="OpenJDK Runtime">
             <ComponentRef Id="comp_bin_api_ms_win_core_console_l1_1_0_dll"/>
+            <ComponentRef Id="comp_bin_api_ms_win_core_console_l1_2_0_dll"/>
             <ComponentRef Id="comp_bin_api_ms_win_core_datetime_l1_1_0_dll"/>
             <ComponentRef Id="comp_bin_api_ms_win_core_debug_l1_1_0_dll"/>
             <ComponentRef Id="comp_bin_api_ms_win_core_errorhandling_l1_1_0_dll"/>
@@ -2803,6 +2808,7 @@
             <ComponentRef Id="comp_bin_jstack_exe"/>
             <ComponentRef Id="comp_bin_jstat_exe"/>
             <ComponentRef Id="comp_bin_jstatd_exe"/>
+            <ComponentRef Id="comp_bin_jsvml_dll"/>
             <ComponentRef Id="comp_bin_keytool_exe"/>
             <ComponentRef Id="comp_bin_kinit_exe"/>
             <ComponentRef Id="comp_bin_klist_exe"/>
@@ -2827,7 +2833,6 @@
             <ComponentRef Id="comp_bin_splashscreen_dll"/>
             <ComponentRef Id="comp_bin_sspi_bridge_dll"/>
             <ComponentRef Id="comp_bin_sunmscapi_dll"/>
-            <ComponentRef Id="comp_bin_svml_dll"/>
             <ComponentRef Id="comp_bin_ucrtbase_dll"/>
             <ComponentRef Id="comp_bin_vcruntime140_dll"/>
             <ComponentRef Id="comp_bin_vcruntime140_1_dll"/>
