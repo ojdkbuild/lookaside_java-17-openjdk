@@ -39,7 +39,6 @@ import java.io.FilePermission;
 import java.io.ObjectInputStream;
 import java.io.RandomAccessFile;
 import java.security.ProtectionDomain;
-import java.security.Security;
 import java.security.Signature;
 
 /** A repository of "shared secrets", which are a mechanism for
@@ -450,9 +449,6 @@ public class SharedSecrets {
     }
 
     public static JavaSecuritySystemConfiguratorAccess getJavaSecuritySystemConfiguratorAccess() {
-        if (javaSecuritySystemConfiguratorAccess == null) {
-            ensureClassInitialized(Security.class);
-        }
         return javaSecuritySystemConfiguratorAccess;
     }
 }
